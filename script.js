@@ -1,8 +1,9 @@
-
+//botões para cadastrar, excluir e editar 
 let btnEnviar = document.querySelectorAll('#botoes button')[0];
 let btnExcluir = document.querySelectorAll('#botoes button')[1];
 let btnEditar = document.querySelectorAll('#botoes button')[2];
 
+//categorias preenchida pelo usuário
 let nome = document.querySelectorAll('#wrap input')[0];
 let quantidade = document.querySelectorAll('#wrap input')[1];
 let preco = document.querySelectorAll('#wrap input')[2];
@@ -12,7 +13,8 @@ let categoria = document.querySelectorAll('#wrap input')[4];
 let tabela = document.querySelector('#saida table');
 let BD = [];
 
-//métodos
+
+//botão cadastrar
 btnEnviar.onclick = function(){
     let produto = new Object();
     produto.nome = nome.value;
@@ -25,6 +27,8 @@ btnEnviar.onclick = function(){
     tabela.innerHTML += `<tr><td><input type="checkbox" id="${produto.id}" onchange="verificar(this.id)"></td><td>${produto.nome}</td><td>${produto.quantidade}</td><td>${preco.value}</td><td>${descricao.value}</td><td>${categoria.value}</td></tr>`;
 }
 
+
+//botão excluir
 btnExcluir.onclick = function(){
     for (let i = 0; i < BD.length; i++){
         let elemento = document.querySelectorAll('#saida table tr td input')[i];
@@ -36,12 +40,15 @@ btnExcluir.onclick = function(){
     }
 }
 
+//conteudo que será guardado em forma de tabela  e exposto ao usuário
 function montarTabela(){
     for (let i = 0; i < BD.length; i++){
         tabela.innerHTML += `<tr><td width="30px"><input type="checkbox" id="${i}" onchange="verificar()"></td><td>${BD[i].nome}</td><td>${BD[i].quantidade}</td><td>${BD[i].preco}</td><td>${BD[i].descricao}</td><td>${BD[i].categoria}</td></tr>`;
     }
 }
 
+
+//botão editar
 btnEditar.onclick = function(){
     for (let i = 0; i < BD.length; i++){
         let elemento = document.querySelectorAll('#saida table tr td input')[i];
